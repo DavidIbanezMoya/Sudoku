@@ -38,7 +38,7 @@ public class SudokuModel {
 
     public boolean checkCol(int fila,int columnaRevisar, int number, boolean correct) {
         for (int i = 0; i<sudoku.length; i++){
-            //Comprovar que estiguen revisant el numero de la columna que toca
+            //Comprovar que estiguen revisant el numero de la fila que toca
             if (number==sudoku[i][columnaRevisar] && sudoku[i][columnaRevisar]!=0){
                 if (i!=fila)
                     correct=false;
@@ -50,6 +50,7 @@ public class SudokuModel {
         return correct;
     }
 
+    //La fila que revisarem, la columna que revisarem i amb quin numero volem comprobarho
     public boolean checkGeneral(int fila, int col, int number) {
         boolean correct = true;
 
