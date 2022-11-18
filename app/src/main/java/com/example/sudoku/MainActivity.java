@@ -46,18 +46,23 @@ public class MainActivity extends AppCompatActivity {
                                 int filaSpinner = (int) spn.getTag(R.id.fila);
                                 int colSpinner = (int) spn.getTag(R.id.col);
 
-                                actualitzarApp();
                                 Spinner numSpinner = spinnerList[filaSpinner][colSpinner];
                                 //Intentar actualizarlo con lo del setTag
                                 boolean correcto = sm.checkGeneral(filaSpinner,colSpinner,numSpinner.getSelectedItemPosition());
 
-                                if (correcto == false) {
+                                if (!correcto) {
                                     spinner.setBackgroundColor(Color.RED);
                                     Log.v("MAL","ReMal");
+                                    System.out.println(spinner.getSelectedItemPosition());
+
                                 }
                                 else {
+                                    spinner.setBackgroundColor(Color.WHITE);
+                                    System.out.println(spinner.getSelectedItemPosition());
                                     sm.setVal(filaSpinner,colSpinner, spn.getSelectedItemPosition());
                                 }
+                                actualitzarApp();
+
                             }
 
                             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -90,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         while (quantitat > 0) {
 
+            Boolean correcto = true;
+            //Si ho posem a 8 no es veuren les cantonades inferiors i dreta
             int fila = (int) (Math.random() * (9) + 0);
             int columna = (int) (Math.random() * (9) + 0);
             int numero = (int) (Math.random() * (9 - 1) + 1);
@@ -97,14 +104,22 @@ public class MainActivity extends AppCompatActivity {
 
 
             //Comprovar que no hi hagi un numero previament
-            if (spinnerList[fila][columna].getSelectedItem().toString() == "0") {
-                spinnerList[fila][columna].setSelection(numero);
-                sm.setVal(fila,columna,numero);
-            } else {
+            // (spinnerList[fila][columna].getSelectedItem().toString() == "0") {
+                correcto = sm.checkGeneral(fila,columna,numero);
+                if (correcto) {
+                    sm.setVal(fila,columna,numero);
+                    spinnerList[fila][columna].setSelection(numero);
+                    spinnerList[fila][columna].setEnabled(false);
+
+                }
+                else {
+                    quantitat++;
+                }
+            /*} else {
                 //Si hi ha el numero el que farem sera augmentar una pasada per a
                 //que segueixi fent
                 quantitat++;
-                }
+                }*/
             quantitat--;
 
         }
