@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     Spinner spinnerList [][] = new Spinner[9][9];
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 if (!correcto) {
                                     spinner.setBackgroundColor(Color.RED);
-                                    Log.v("MAL","ReMal");
+                                    Toast.makeText(MainActivity.this, "Incorrect Number", Toast.LENGTH_SHORT).show();
                                     System.out.println(spinner.getSelectedItemPosition());
 
                                 }

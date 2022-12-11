@@ -9,11 +9,7 @@ public class SudokuModel {
     public void setVal(int x, int y, int numero) {
         for (int fila = 0; fila < 8; fila++) {
             for (int col = 0; col < 8; col++) {
-                if (x == fila) {
-                    if (y == col) {
                         sudoku[x][y] = numero;
-                    }
-                }
             }
         }
     }
