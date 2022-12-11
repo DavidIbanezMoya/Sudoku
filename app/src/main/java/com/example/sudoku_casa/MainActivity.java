@@ -1,5 +1,4 @@
 package com.example.sudoku_casa;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
